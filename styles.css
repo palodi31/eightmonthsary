@@ -315,26 +315,58 @@ body {
   font-size: 0.95rem;
 }
 
-.tilt-left { transform: rotate(-5deg); }
-.tilt-right { transform: rotate(5deg); }
-.small-drop { transform: rotate(-2deg) translateY(24px); }
+.tilt-left {
+  transform: rotate(-4deg);
+}
+
+.tilt-right {
+  transform: rotate(4deg);
+}
+
+.small-drop {
+  transform: rotate(-2deg) translateY(24px);
+}
+.tilt-1 {
+  transform: rotate(-2deg);
+}
+
+.tilt-2 {
+  transform: rotate(2deg);
+}
+
+.tilt-3 {
+  transform: rotate(2deg) translateY(12px);
+}
+
+.photo-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 100%;
+  cursor: pointer;
+}
 
 .photo-placeholder {
   height: 280px;
   border-radius: 4px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 16px;
-  color: rgba(255,255,255,0.95);
-  font-weight: 700;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  background: #f7dbe7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.photo-one { background: linear-gradient(135deg, #ff8db7, #ffc9dd); }
-.photo-two { background: linear-gradient(135deg, #ffb996, #ffd8be); }
-.photo-three { background: linear-gradient(135deg, #b79dff, #dbcfff); }
+.polaroid-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.photo-button:hover .polaroid-photo {
+  transform: scale(1.04);
+}
 
 .clip,
 .heart-pin {
@@ -351,24 +383,107 @@ body {
   box-shadow: inset 0 0 0 4px rgba(255,255,255,0.35);
 }
 
-.clip-pink { background: linear-gradient(#ff9ec3, #f376a7); }
-.clip-cream { background: linear-gradient(#ffe8c8, #f0c590); }
-.clip-gold { background: linear-gradient(#f6d17f, #d6a246); }
+.clip-pink {
+  background: linear-gradient(#ff9ec3, #f376a7);
+}
+
+.clip-cream {
+  background: linear-gradient(#ffe8c8, #f0c590);
+}
+
+.clip-gold {
+  background: linear-gradient(#f6d17f, #d6a246);
+}
 
 .heart-pin {
   right: 16px;
   font-size: 1.1rem;
 }
 
-.snapshot-note {
-  padding: 18px 20px;
-  border-radius: 18px;
-  margin-top: 12px;
+/* Medium-size modal preview */
+.photo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(40, 18, 31, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
 }
 
-.snapshot-note code {
+.photo-modal.active {
+  display: flex;
+}
+
+.photo-modal-box {
+  position: relative;
+  width: min(680px, 92vw);
+  background: #fffafc;
+  border-radius: 24px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 20px 45px rgba(60, 30, 45, 0.28);
+  text-align: center;
+}
+
+.photo-modal-box img {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 16px;
+  display: block;
+}
+
+.photo-modal-box p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.close-photo-modal {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
   color: var(--rose-deep);
-  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 991.98px) {
+  .snapshot-wall {
+    display: grid;
+    gap: 26px;
+    padding-top: 70px;
+  }
+
+  .polaroid-card {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .tilt-left,
+  .tilt-right,
+  .small-drop {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .photo-placeholder {
+    height: 220px;
+  }
+
+  .photo-modal-box {
+    width: 94vw;
+    padding: 16px 16px 12px;
+  }
 }
 
 .fridge-frame {

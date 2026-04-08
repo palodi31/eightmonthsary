@@ -26,3 +26,32 @@ backButtons.forEach((button) => {
     showView('homeView');
   });
 });
+
+const photoButtons = document.querySelectorAll('.photo-button');
+const photoModal = document.getElementById('photoModal');
+const modalImage = document.getElementById('modalImage');
+const modalCaption = document.getElementById('modalCaption');
+const closePhotoModal = document.getElementById('closePhotoModal');
+
+photoButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const photoSrc = button.getAttribute('data-photo');
+    const caption = button.getAttribute('data-caption') || '';
+
+    modalImage.src = photoSrc;
+    modalCaption.textContent = caption;
+    photoModal.classList.add('active');
+  });
+});
+
+closePhotoModal.addEventListener('click', () => {
+  photoModal.classList.remove('active');
+  modalImage.src = '';
+});
+
+photoModal.addEventListener('click', (event) => {
+  if (event.target === photoModal) {
+    photoModal.classList.remove('active');
+    modalImage.src = '';
+  }
+});
